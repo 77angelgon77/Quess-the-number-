@@ -1,0 +1,74 @@
+from tkinter import *
+import random
+screen = Tk() 
+screen.geometry('500x500')
+screen.configure(bg="#000000")
+
+
+up = PhotoImage(file="uparrow.png")
+down = PhotoImage(file="downarrow.png")
+correct = PhotoImage(file="correct.png")
+dice = PhotoImage(file="dice.png")
+
+
+lbl =Label(screen,text="..................QUESS THE NUMBER.................." , fg = "green",# gia na allazv to xromata toy label 
+bg = "#000000" , font = ('Impact' , 30))# gia na allazv to xromata toy label 
+
+lbl.grid(row=0,columnspan=3)
+
+lbl =Label(screen,text="In this game you will try to find a secret that is \n randomly chosen every round.\n Try to quess the it with the \nleast possible tries " , fg = "green",# gia na allazv to xromata toy label 
+bg = "#000000" , font = ('Impact' , 15))# gia na allazv to xromata toy label 
+
+lbl.grid(row=2,columnspan=3)
+
+def rndmz():
+    global choice
+    diff = choice.get()
+    if diff==1:
+        a = random.randint(0,50)
+        print(a)
+    if diff ==2:
+        a=random.randint(0,100)
+        print(a)
+    if diff ==3:
+        a= random.randint(0, 200)
+        print(a)
+
+choice= IntVar() # to int simainei oti einai akaireoi arithmoi 
+
+def apply():
+    print ("hello world")
+
+rb1= Radiobutton(screen, text="Choise 1"  ,value=1 , variable=choice,bg="#000000")
+rb2= Radiobutton(screen, text="Choise 2" ,value=2 , variable=choice,bg="#000000")
+rb3= Radiobutton(screen, text="Choise 3" ,value=3, variable=choice,bg="#000000")
+
+rb1.grid(row=1,column=0)
+rb2.grid(row=1,column=1)
+rb3.grid(row=1,column=2)
+
+def checka():
+    global X
+    a=int(entry.get())
+    if a > x:
+        img.configure(image=down)
+    elif a<x:
+        img.confiqure(image=up)
+    elif a == x:
+        img.configure(image = check)
+
+e = Entry(screen,bg="#000000")# me ayto oti grafv ginete *
+e.grid(row=3, columnspan=3)
+
+btn = Button(screen, text="Exit", highlightbackground="black", fg="black")
+btn.grid(row=4, column=0)
+
+btn = Button(screen, text="Randomize", highlightbackground="black", fg="black", command=rndmz)
+btn.grid(row=4, column=2)
+
+
+
+
+screen.bind('<Return>',checka)
+screen.mainloop()
+ 
